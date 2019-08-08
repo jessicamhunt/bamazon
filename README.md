@@ -22,6 +22,7 @@ Usage: The next section is usage, in which you instruct other people on how to u
 ### Images
 
 1. Connecting to MySql server and database.
+
 ![Connection to MySQL](images/mysqlconnection.png)
 
 2. Query to grab JSON object for MySql table data.
@@ -31,6 +32,6 @@ Usage: The next section is usage, in which you instruct other people on how to u
 ![Display Product Data](images/displayproductinfo.png)
 
 4. User prompt to select item ID and Quantity.
-![Prompt Item Selection](images/promtselection.png)
+![Prompt Item Selection](images/promptselection.png)
 
 - - -
