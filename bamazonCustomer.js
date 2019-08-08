@@ -41,11 +41,15 @@ function afterConnection() {
       showProductInfo.push([res[i].id, res[i].product, res[i].department, res[i].price, res[i].quantity]);
     }
     console.log(showProductInfo.toString());
-
+    selectProduct()
   });
 }
 
+//prompt with two messages
 function selectProduct() {
+  console.log("----------------------------------")
+  console.log("Add an item to your shopping cart!")
+  console.log("----------------------------------")
   inquirer
     .prompt(
       [{
@@ -63,19 +67,14 @@ function selectProduct() {
 
     )
     .then(function (answer) {
-      // based on their answer, either call the bid or the post functions
-      if (answer.IDandQuantity === "ID") {
-        postAuction();
-      } else if (answer.IDandQuantity === "QUANTITY") {
-        bidAuction();
-      } else {
-        connection.end();
-      }
+      
+      var itemID = answer.ID;
+      var itemQuantity = answer.Quantity;
+      
     });
-}
+};
 //display items available for sale
 
-//prompt with two messages
 
 //ask for id of product
 
