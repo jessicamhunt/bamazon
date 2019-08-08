@@ -21,19 +21,19 @@ Usage: The next section is usage, in which you instruct other people on how to u
 
 ### Images
 
-##### Connecting to MySql server and database.
+#### Connecting to MySql server and database.
 
 ![Connection to MySQL](images/mysqlconnection.png)
 
-##### Query to grab JSON object for MySql table data.
+#### Query to grab JSON object for MySql table data.
 
 ![Query Grabbing Data](images/query4table.png)
 
-##### Display JSON object in CLI as table.
+#### Display JSON object in CLI as table.
 
 ![Display Product Data](images/displayproductinfo.png)
 
-##### User prompt to select item ID and Quantity.
+#### User prompt to select item ID and Quantity.
 
 ![Prompt Item Selection](images/promptselection.png)
 

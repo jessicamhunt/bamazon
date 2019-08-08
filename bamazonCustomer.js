@@ -24,13 +24,17 @@ connection.connect(function (err) {
   afterConnection();
 });
 
-//once connected, query to mysql grab/display data from the table named products
-//test for errors and end connection
+
+//test query for errors and connection
 function afterConnection() {
   connection.query("SELECT * FROM products", function (err, res) {
     if (err) throw err;
+
+    //once connected, query to mysql grab/display data from the table named products
+    console.log(res);
     connection.end();
 
+    //display items available for sale as table in CLI
     var showProductInfo = new Table({
       head: ["ID", "Product", "Department", "Price", "Quantity"],
       colWidths: [5, 20, 20, 10, 14]
@@ -53,32 +57,29 @@ function selectProduct() {
   inquirer
     .prompt(
       [{
-        name: "ID",
-        type: "input",
-        message: "Please enter the product ID of the item you wish to buy.",
-        filter: Number,
-      },
-      {
-        name: "Quantity",
-        type: "input",
-        message: "How many would you like to order?",
-        filter: Number,
-      }]
+          //ask for id of product
+          name: "ID",
+          type: "input",
+          message: "Please enter the product ID of the item you wish to buy.",
+          filter: Number,
+        },
+        {
+          //how many units of product (quantity)
+          name: "Quantity",
+          type: "input",
+          message: "How many would you like to order?",
+          filter: Number,
+        }
+      ]
 
     )
     .then(function (answer) {
-      
+      //store user input    
       var itemID = answer.ID;
       var itemQuantity = answer.Quantity;
-      
+
     });
 };
-//display items available for sale
-
-
-//ask for id of product
-
-//how many units of product (quantity)
 
 //place customer order
 
