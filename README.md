@@ -21,6 +21,7 @@ The app will take in orders from customers and deplete stock from the store's in
 ### Images
 
 ![Connection to MySQL](images/mysqlconnection.png)
+![Query Grabbing Data](images/query4table.png)
 
 - - -
 
