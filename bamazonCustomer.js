@@ -45,13 +45,23 @@ function afterConnection() {
   });
 }
 
-function start() {
+function selectProduct() {
   inquirer
-    .prompt({
-      name: "IDandQuantity",
-      type: "input",
-      message: "Please enter product ID",
-    })
+    .prompt(
+      [{
+        name: "ID",
+        type: "input",
+        message: "Please enter the product ID of the item you wish to buy.",
+        filter: Number,
+      },
+      {
+        name: "Quantity",
+        type: "input",
+        message: "How many would you like to order?",
+        filter: Number,
+      }]
+
+    )
     .then(function (answer) {
       // based on their answer, either call the bid or the post functions
       if (answer.IDandQuantity === "ID") {
