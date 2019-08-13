@@ -21,18 +21,19 @@ var connection = mysql.createConnection({
 connection.connect(function (err) {
   if (err) throw err;
   console.log("connected as id " + connection.threadId + "\n");
-  afterConnection();
+  displayItems();
 });
 
 
 //test query for errors and connection
-function afterConnection() {
-  connection.query("SELECT * FROM products", function (err, res) {
+var displayItems = function() {
+  var query = "SELECT * FROM products";
+  connection.query(query, function (err, res) {
     if (err) throw err;
 
     //once connected, query to mysql grab/display data from the table named products
     console.log(res);
-    connection.end();
+    // connection.end();
 
     //display items available for sale as table in CLI
     var showProductInfo = new Table({
@@ -49,6 +50,7 @@ function afterConnection() {
   });
 }
 
+//place customer order
 //prompt with two messages
 function selectProduct() {
   console.log("----------------------------------")
@@ -76,17 +78,37 @@ function selectProduct() {
     .then(function (answer) {
       //store user input    
       var itemID = answer.ID;
+      console.log(itemID);
+
       var itemQuantity = answer.Quantity;
+      console.log(itemQuantity);
+
+      validateOrder(itemID, itemQuantity);
 
     });
 };
 
-//place customer order
+function validateOrder(ID, Quant) {
 
-//check if store has enough of product
+  connection.query("SELECT * FROM products WHERE id = " + ID, function (err, res) {
+    if (err) throw err
+    console.log(res);
 
+    //check if store has enough of product
+    if (Quant <= res[0].quantity) {
+      var total = res[0].price * Quant;
+      console.log("The total cost of your order is:");
+      console.log("$" + total);
+      const newQuant = res[0].quantity - Quant
+      //update sql database to reflect remaining quantity
+      connection.query("UPDATE products SET quantity = " + newQuant + " WHERE id = " + ID);
+    }
+    displayItems();
+  });
+}
 //display message for insufficient quantity of product
 
-//update sql database to reflect remaining quantity
+// afterConnection();
+//display message for insufficient quantity of product
 
 //after update, show customer the total cost of order
